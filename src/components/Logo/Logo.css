@@ -1,0 +1,21 @@
+.Tilt{
+    height: 20rem;
+    width: 20rem;
+    border-style: dashed;
+    border-radius: 1px;
+    border-color: white;
+    background:
+    linear-gradient(to right, rgb(0, 140, 180), rgb(44, 19, 118));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoBox {
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    height: 12rem;
+}
