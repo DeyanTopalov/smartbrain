@@ -7,6 +7,7 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import ParticlesBg from 'particles-bg'
 import { Component } from 'react'; //Convert to 
 // import { useState } from 'react'; -> when using the Function
+// import Clarifai from 'clarifai';
 
 
 // function App() { // Using Function instead of Class Component
@@ -33,22 +34,49 @@ import { Component } from 'react'; //Convert to
 //   );
 // }
 
+// const app = new Clarifai.App({
+//   apiKey: '9b38951b416b4eb2a287c0da7916f3cb'
+//  });
+
+
 
 class App extends Component { // using Class Component
   constructor() {
     super();
     this.state = {
       input: '',
+      imageUrl: ''
     }
   }
 
-onInputChange = (event) => {
-  console.log(event.target.value);
-}
 
-onButtonSubmit = () => {
-  console.log('click');
-}
+  onInputChange = (event) => {
+    this.setState({input: event.target.value});
+  }
+
+  onButtonSubmit = () => {
+    console.log('click');
+    // this.setState({imageUrl: this.state.input});
+    // app.models.predict('face-detection', this.state.input)
+    // .then(response => {
+    //   console.log('hi', response)
+    //   if (response) {
+    //     fetch('http://localhost:3000/image', {
+    //       method: 'put',
+    //       headers: {'Content-Type': 'application/json'},
+    //       body: JSON.stringify({
+    //         id: this.state.user.id
+    //       })
+    //     })
+    //       .then(response => response.json())
+    //       .then(count => {
+    //         this.setState(Object.assign(this.state.user, { entries: count}))
+    //       })
+
+    //   }
+    // })
+  }
+    
 
 render() {
   return (
@@ -59,7 +87,7 @@ render() {
       <Rank />
       <ImageLinkForm onInputChange = {this.onInputChange} 
       onButtonSubmit = {this.onButtonSubmit}/>
-      <FaceRecognition />
+      <FaceRecognition imageUrl ={this.state.imageUrl} />
     </div>
   );
 }
