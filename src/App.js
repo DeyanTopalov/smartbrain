@@ -5,6 +5,7 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import ParticlesBg from 'particles-bg'
+import Signin from './components/Signin/Signin';
 import { Component } from 'react'; //Convert to 
 // import { useState } from 'react'; -> when using the Function
 // import Clarifai from 'clarifai';
@@ -45,7 +46,9 @@ class App extends Component { // using Class Component
     super();
     this.state = {
       input: '',
-      imageUrl: ''
+      imageUrl: '',
+      box: {},
+      route: 'signin' // route state used to navigate 
     }
   }
 
@@ -76,18 +79,28 @@ class App extends Component { // using Class Component
     //   }
     // })
   }
-    
+
+onRouteChange = () => {
+  this.setState({route: 'home'})
+}
 
 render() {
   return (
     <div className="App">
       <ParticlesBg type="cobweb" num='500' bg={true} />
       <Navigation />
-      <Logo />
-      <Rank />
-      <ImageLinkForm onInputChange = {this.onInputChange} 
-      onButtonSubmit = {this.onButtonSubmit}/>
-      <FaceRecognition imageUrl ={this.state.imageUrl} />
+      { this.state.route === 'signin' 
+        ? <Signin onRouteChange={this.onRouteChange}/> // if true
+        : <div> {/* if false, also needs to be wrapped in a div as we can not return more than one div element */}
+          <Logo />
+          <Rank />
+          <ImageLinkForm onInputChange = {this.onInputChange} 
+          onButtonSubmit = {this.onButtonSubmit}/>
+          <FaceRecognition imageUrl ={this.state.imageUrl} />
+        </div>
+        
+      }
+      
     </div>
   );
 }
