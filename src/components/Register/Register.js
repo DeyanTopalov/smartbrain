@@ -1,12 +1,16 @@
 import React from 'react';
 
-const Signin = ({ onRouteChange }) => {
+const Register = ({ onRouteChange }) => {
     return (
         <article className="br3 ba white white-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center"> {/* Card template */}
-            <main className="pa4 white">  {/* Form Template */}
+            <main className="pa4 white">  
                 <div className="measure">
                     <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-                    <legend className="f1 fw6 ph0 mh0 white">Sign In</legend>
+                    <legend className="f1 fw6 ph0 mh0 white">Register</legend>
+                    <div className="mt3">
+                        <label className="db fw6 lh-copy f4" htmlFor="Name">Name</label>
+                        <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="Text" name="Name"  id="Name"/>
+                    </div>
                     <div className="mt3">
                         <label className="db fw6 lh-copy f4" htmlFor="email-address">Email</label>
                         <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address"/>
@@ -21,12 +25,8 @@ const Signin = ({ onRouteChange }) => {
                         onClick={() => onRouteChange('home')}
                         className="b ph3 pv2 input-reset ba white bg-transparent grow pointer f4 dib" 
                         type="submit" 
-                        value="Sign in"
+                        value="Register"
                     />
-                    </div>
-                    <div className="lh-copy mt3">
-                    <p onClick={() => onRouteChange('register')}
-                    className="f1 link dim white db pointer">Register</p>
                     </div>
                 </div>
             </main>
@@ -36,4 +36,4 @@ const Signin = ({ onRouteChange }) => {
     );
 }
 
-export default Signin;
+export default Register;
