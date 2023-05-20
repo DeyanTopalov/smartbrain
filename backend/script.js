@@ -56,6 +56,43 @@ app.post("./register", (req, res) => {
   // a.k.a the last item in the database -> a.k.a -1
 });
 
+app.get("/profile/:id", (req, res) => {
+  const { id } = req.params;
+  let found = false;
+  database.users.forEach((user) => {
+    // performing a Loop through the database to mathc the get request id
+    // with what we have as registered Users. (note: this is not efficient
+    //as in largescape userbase it will take forever.. we will need
+    //an actual database later)
+    if (user.id === id) {
+      found = true;
+      return res.json(user);
+      // here we have only the success If inside the loop, otherwise
+      // it will not work
+    }
+  });
+  if (!found) {
+    res.status(404).json("no such user");
+    // Now outside the loop we have the Fail scenario
+  }
+});
+
+app.put("/image", (req, res) => {
+  const { id } = req.params;
+  let found = false;
+  database.users.forEach((user) => {
+    if (user.id === id) {
+      found = true;
+      user.entries++;
+      // increase the entries with +1 each time
+      return res.json(user.entries);
+    }
+  });
+  if (!found) {
+    res.status(404).json("no such user");
+  }
+});
+
 app.listen(3000, () => {
   console.log("app is running on port 3000");
 });
