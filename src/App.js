@@ -4,7 +4,7 @@ import Logo from "./components/Logo/Logo";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import Rank from "./components/Rank/Rank";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
-import ParticlesBg from "particles-bg";
+// import ParticlesBg from "particles-bg";
 import Signin from "./components/Signin/Signin";
 import Register from "./components/Register/Register";
 import { Component } from "react";
@@ -19,8 +19,21 @@ class App extends Component {
       box: {},
       route: "signin", // route state used to navigate
       isSignedIn: false, //new state, add the false as boolean not a string
+      user: {
+        id: "",
+        name: "",
+        email: "",
+        entries: 0,
+        joined: "",
+      },
     };
   }
+
+  // componentDidMount() {
+  //   fetch("http://localhost:3000/")
+  //     .then((res) => res.json())
+  //     .then(console.log);
+  // }
 
   onInputChange = (event) => {
     this.setState({ input: event.target.value });
@@ -44,7 +57,7 @@ class App extends Component {
     const { isSignedIn, imageUrl, route } = this.state;
     return (
       <div className="App">
-        <ParticlesBg type="cobweb" num="500" bg={true} />
+        {/* <ParticlesBg type="cobweb" num="500" bg={true} />  - removed as it is annoying*/}
         <Navigation
           isSignedIn={isSignedIn}
           onRouteChange={this.onRouteChange}
