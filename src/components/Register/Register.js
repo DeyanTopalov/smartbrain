@@ -21,7 +21,7 @@ class Register extends React.Component {
   };
 
   onRegister = () => {
-    fetch("http://localhost:3000/signin", {
+    fetch("http://localhost:3000/register", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -33,8 +33,9 @@ class Register extends React.Component {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        if (data === "success") {
+      .then((user) => {
+        if (user) {
+          this.props.loadUser(user); // we need to create this in App.js
           this.props.onRouteChange("home");
         }
       });

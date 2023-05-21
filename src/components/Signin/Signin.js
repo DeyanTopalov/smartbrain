@@ -31,11 +31,9 @@ class Signin extends React.Component {
       }),
     })
       .then((res) => res.json())
-      .then((data) => {
-        //if the data is valided by the server and we get 'success' - coded as res in the server
-        if (data === "success") {
-          this.props.onRouteChange("home"); //navigates to home screen
-        }
+      .then((user) => {
+        if (user.id) this.props.loadUser(user);
+        this.props.onRouteChange("home");
       });
   };
 
